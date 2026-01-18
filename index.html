@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+  .tool-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1e40af;
+    background: transparent;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    outline: none;
+  }
+
+  .tool-btn:hover {
+    background: #eff6ff;
+    border-color: #93c5fd;
+    transform: translateY(-1px);
+  }
+
+  .tool-btn:active {
+    transform: translateY(0);
+    background: #dbeafe;
+  }
+
+  .tool-btn.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  }
+</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infinite Canvas</title>
+  <style>
+    body { margin: 0; overflow: hidden; background: #f0f0f0; } /* Light bg to see if canvas loads */
+    #canvas-container { width: 100vw; height: 100vh; position: relative; }
+  </style>
+  <!-- Load Socket.io first -->
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- Load Konva next -->
+  <script src="konva.min.js"></script>
+</head>
+<body>
+      <div id="canvas-container"></div>
+      <div id="toolbar" style="
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  user-select: none;
+">
+  <button onclick="setTool('select')">Select</button>
+  <button onclick="setTool('pan')">Pan</button>
+  <button onclick="addRectangle()">Rectangle</button>
+  <button onclick="addStickyNote()">Sticky Note</button>
+</div>
+
+  <script>
+    console.log("Page loaded! Checking if Konva and io exist...");
+    console.log("io defined?", typeof io !== 'undefined');
+    console.log("Konva defined?", typeof Konva !== 'undefined');
+  </script>
+<div id="toolbar" style="position: absolute; top: 10px; left: 10px; z-index: 100; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+  <button onclick="setTool('select')">Select</button>
+  <button onclick="setTool('pan')">Pan</button>
+  <button onclick="addRectangle()">Rectangle</button>
+  <button onclick="addStickyNote()">Sticky Note</button>
+  <!-- <button onclick="setTool('connect')">Connect</button> -->
+</div>
+  <script src="client.js"></script>
+</body>
+</html>
